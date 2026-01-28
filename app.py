@@ -1,182 +1,312 @@
-# from flask import Flask
-
-# app = Flask(__name__)
-
-# @app.route('/')
-# def home():
-#     return "<h1>Welcome to Jenkins Tutorials</h1>"
-
-# # ❌ DO NOT use app.run() in Azure
-
-
-import os
 from flask import Flask
+import os
 
 app = Flask(__name__)
 
-# ---------- Common HTML Style ----------
+# Enhanced CSS with vibrant block colors
 STYLE = """
 <style>
-body {
-    margin: 0;
-    font-family: Arial, Helvetica, sans-serif;
-    background: linear-gradient(120deg, #0f2027, #203a43, #2c5364);
-    color: white;
-}
-.navbar {
-    background-color: #111;
-    padding: 15px;
-    text-align: center;
-}
-.navbar a {
-    color: #00e5ff;
-    margin: 0 15px;
-    text-decoration: none;
-    font-size: 18px;
-    font-weight: bold;
-}
-.navbar a:hover {
-    color: #ffcc00;
-}
-.container {
-    padding: 40px;
-}
-.card {
-    background-color: rgba(255,255,255,0.1);
-    border-radius: 12px;
-    padding: 25px;
-    margin-bottom: 25px;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.3);
-}
-h1, h2 {
-    color: #ffcc00;
-}
-ul {
-    line-height: 1.8;
-}
-.footer {
-    text-align: center;
-    padding: 15px;
-    background-color: #111;
-    font-size: 14px;
-    color: #ccc;
-}
+    body {
+        margin: 0;
+        font-family: 'Consolas', 'Segoe UI', monospace;
+        background: #0f172a;
+        color: #ffffff;
+        line-height: 1.6;
+    }
+    .navbar {
+        background: #1e293b;
+        padding: 15px;
+        text-align: center;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        border-bottom: 2px solid #334155;
+    }
+    .navbar a {
+        color: #00e5ff;
+        margin: 0 20px;
+        text-decoration: none;
+        font-size: 18px;
+        font-weight: bold;
+    }
+    .navbar a:hover { color: #ffcc00; }
+    
+    .container { padding: 30px; max-width: 1100px; margin: auto; }
+    
+    .card {
+        background: rgba(30, 41, 59, 0.7);
+        padding: 25px;
+        border-radius: 12px;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+        margin-bottom: 20px;
+    }
+
+    /* Color Coded Sections */
+    .block-header { border-left: 8px solid #ffcc00; background: #2d3748; padding: 15px; margin-top: 20px; }
+    .block-cloud { border-left: 8px solid #00e5ff; background: #1a365d; padding: 15px; margin-bottom: 10px; }
+    .block-devops { border-left: 8px solid #a78bfa; background: #2e1065; padding: 15px; margin-bottom: 10px; }
+    .block-automation { border-left: 8px solid #4ade80; background: #064e3b; padding: 15px; margin-bottom: 10px; }
+    .block-security { border-left: 8px solid #f87171; background: #450a0a; padding: 15px; margin-bottom: 10px; }
+
+    pre {
+        white-space: pre-wrap;
+        word-wrap: break-word;
+        font-size: 15px;
+        color: #e2e8f0;
+        margin: 0;
+    }
+    h1, h2 { margin-top: 0; }
+    .footer {
+        margin-top: 30px;
+        background: #0b0f19;
+        text-align: center;
+        padding: 20px;
+        font-size: 14px;
+        color: #94a3b8;
+    }
 </style>
 """
 
-# ---------- Home Page ----------
+def get_layout(title, content):
+    return f"""
+    <html>
+    <head>
+        <title>{title}</title>
+        {STYLE}
+    </head>
+    <body>
+        <div class="navbar">
+            <a href="/">Home</a>
+            <a href="/syllabus">Syllabus</a>
+        </div>
+        <div class="container">
+            {content}
+        </div>
+        <div class="footer">
+            © 2026 Veera Naresh IT | Multi Cloud DevOps Specialist
+        </div>
+    </body>
+    </html>
+    """
+
 @app.route("/")
 def home():
-    return f"""
-    <html>
-    <head>
-        <title>Multicloud DevOps</title>
-        {STYLE}
-    </head>
-    <body>
-
-    <div class="navbar">
-        <a href="/">Home</a>
-        <a href="/syllabus">Syllabus</a>
+    content = f"""
+    <div class="card">
+        <h1 style="color:#ffcc00;">Veera Naresh IT</h1>
+        <h2 style="color:#00e5ff;">Multi Cloud – DevOps Course</h2>
+        <p>
+            Complete industry-level <b>AWS, Azure & GCP</b> DevOps syllabus 
+            with real-time projects, automation, CI/CD, Kubernetes, and IaC.
+        </p>
+        <p>
+            Environment Status: <span style="color:#4ade80;">[ ONLINE ]</span><br>
+            Running on: <b>{os.getenv("CLOUD_PROVIDER", "Multi-Cloud Environment")}</b>
+        </p>
     </div>
-
-    <div class="container">
-        <div class="card">
-            <h1>Multicloud DevOps with Veera Sir</h1>
-            <h2>Naresh IT</h2>
-            <p>
-                Become an <b>Industry-Ready DevOps Engineer</b> with hands-on
-                experience across <b>AWS, Azure, and GCP</b>.
-            </p>
-        </div>
-
-        <div class="card">
-            <h2>Why This Course?</h2>
-            <ul>
-                <li>Real-time DevOps projects</li>
-                <li>CI/CD with Jenkins & GitHub Actions</li>
-                <li>Docker & Kubernetes (EKS, AKS, GKE)</li>
-                <li>Terraform for Multicloud</li>
-                <li>Monitoring, Security & Best Practices</li>
-            </ul>
-        </div>
-
-        <div class="card">
-            <h2>Cloud Detected</h2>
-            <p>
-                Running on: <b>{os.getenv("CLOUD_PROVIDER", "Multicloud Environment")}</b>
-            </p>
-        </div>
-    </div>
-
-    <div class="footer">
-        © 2026 Naresh IT | Multicloud DevOps Program
-    </div>
-
-    </body>
-    </html>
     """
+    return get_layout("Veera Naresh IT – Home", content)
 
-# ---------- Syllabus Page ----------
 @app.route("/syllabus")
 def syllabus():
-    return f"""
-    <html>
-    <head>
-        <title>DevOps Syllabus</title>
-        {STYLE}
-    </head>
-    <body>
-
-    <div class="navbar">
-        <a href="/">Home</a>
-        <a href="/syllabus">Syllabus</a>
+    content = f"""
+    <h1 style="color:#ffcc00; text-align:center;">Complete Course Syllabus</h1>
+    
+    <div class="block-header">
+        <h2 style="color:#ffcc00;">Modules Overview (1-35)</h2>
+        <pre>
+● Module 01:  Aws,Azure And Gcp Cloud Overview  
+● Module 02:  Linux Introduction  
+● Module 03:  AWS Elastic Compute Cloud (ec2)  
+● Module 04:  Azure Virtual Machine (VM) 
+● Module 05:  GCP Compute Engine 
+● Module 06:  AWS Virtual Private Cloud (VPC)  
+● Module 07:  Azure Virtual Network (VNET)  
+● Module 08:  GCP Cloud Virtual Network 
+● Module 09:  AWS S3 Storage Service 
+● Module 10:  Azure Blob Storage  
+● Module 11:  GCP Cloud Storage  
+● Module 12:  Identity and Access Management 
+● Module 13: Amazon Relational Database and DynamoDB  
+● Module 14: Security Services 
+● Module 15: Serverless service lambda 
+● Module 16: Amazon Route 53 
+● Module 17: Overview Of Devops 
+● Module 18: Shell scripting  
+● Module 19: Web App Servers Configurations 
+● Module 20: Version Control with Git 
+● Module 21: Build tool Maven 
+● Module 22: SonarQube Overview 
+● Module 23: Continuous Integration – Jenkins 
+● Module 24: Azure CICD 
+● Module 25: Git Lab CICD 
+● Module 26: Docker 
+● Module 27: Orchestration using Kubernetes 
+● Module 28: Azure Kubernetes Service (AKS) 
+● Module 29: Overview of Argo CD   
+● Module 30: Continuous Monitoring with Grafana 
+● Module 31: Ansible 
+● Module 32: Terraform 
+● Module 33: Python Boto3 
+● Module 34: Project to cover all Tools 
+● Module 35: Resume Preparation
+        </pre>
     </div>
 
-    <div class="container">
+    <div class="block-cloud">
+        <h2 style="color:#00e5ff;">Section 1: Cloud Foundational Concepts</h2>
+        <pre>
+1. Introduction to Cloud Computing 
+• What is Cloud Computing? 
+• Evolution and importance of cloud technology 
+• Key players in the market: AWS, Azure, GCP 
 
-        <div class="card">
-            <h1>Multicloud DevOps Syllabus</h1>
-        </div>
+2. Why Cloud Computing? 
+• Traditional infrastructure vs. cloud infrastructure 
+• Benefits of moving to the cloud for businesses 
+• Use cases across industries: startups, enterprises, etc. 
 
-        <div class="card">
-            <h2>Core DevOps</h2>
-            <ul>
-                <li>Linux & Shell Scripting</li>
-                <li>Git & GitHub</li>
-                <li>Jenkins CI/CD Pipelines</li>
-                <li>Docker & Containerization</li>
-            </ul>
-        </div>
+3. Benefits of Cloud Computing 
+• Cost Efficiency, Scalability, Elasticity, Flexibility
+• Disaster Recovery and Business Continuity 
+• Global Accessibility and High Availability 
+• Automated Infrastructure Management (AI/ML) 
 
-        <div class="card">
-            <h2>Kubernetes & Cloud</h2>
-            <ul>
-                <li>Kubernetes Architecture</li>
-                <li>AWS (EC2, VPC, EKS, IAM)</li>
-                <li>Azure (VMs, App Service, AKS)</li>
-                <li>GCP (Compute Engine, GKE)</li>
-            </ul>
-        </div>
+4. Types of Cloud Computing 
+• Public Cloud (AWS, Azure, GCP) 
+• Private Cloud & Hybrid Cloud
+• Community Cloud
 
-        <div class="card">
-            <h2>Advanced DevOps</h2>
-            <ul>
-                <li>Terraform (IaC)</li>
-                <li>Monitoring – Prometheus & Grafana</li>
-                <li>DevSecOps – Trivy, SonarQube</li>
-                <li>Real-Time Multicloud Projects</li>
-            </ul>
-        </div>
+5. Cloud Service Models 
+• SaaS: Software as a Service (Gmail, Salesforce) 
+• PaaS: Platform as a Service (Beanstalk, App Service) 
+• IaaS: Infrastructure as a Service (EC2, VM, GCE) 
 
+6. Scaling & Issues
+• Horizontal vs Vertical Scaling 
+• Vendor Lock-In, Downtime, Data Privacy
+• Cloud Costing Models: Pay-as-you-go vs Reserved
+        </pre>
     </div>
 
-    <div class="footer">
-        Designed for DevOps Engineers | Veera Sir – Naresh IT
+    <div class="block-automation">
+        <h2 style="color:#4ade80;">Section 2: Virtualization & Linux</h2>
+        <pre>
+2. Virtualization 
+• Virtualization and cloud computing    
+• Types of virtualization & Hypervisor Concepts 
+• Vendors & Benefits
+
+3. Linux           
+• Important Linux commands & filesystem
+• File permissions & Process management 
+• User account & Software management  
+• Networking in Linux 
+        </pre>
     </div>
 
-    </body>
-    </html>
+    <div class="block-cloud">
+        <h2 style="color:#00e5ff;">Section 3: Multi-Cloud Compute & Networking</h2>
+        <pre>
+AWS EC2, Azure VM, GCP Compute Engine 
+• Instance launch (Windows & Linux) 
+• Key pair management & Security groups / NSG / Firewall 
+• Storage, snapshots, User data, and metadata 
+• Load balancers & Auto scaling (Fixed/Dynamic)
+• AWS CLI and IAM roles 
+
+Networking (AWS VPC, Azure VNET, GCP Network) 
+• IP addressing & CIDR 
+• Subnets & Route tables 
+• Internet Gateway & Network ACLs 
+
+Storage Services 
+• S3, Blob Storage, Cloud Storage 
+• Versioning & Lifecycle management 
+• Static website hosting & Cross-region replication 
+        </pre>
+    </div>
+
+    <div class="block-security">
+        <h2 style="color:#f87171;">Section 4: Security, Databases & Serverless</h2>
+        <pre>
+IAM & Security
+• Root vs IAM, MFA, Password policies 
+• Roles, Groups, and Custom policies 
+• Secrets Manager, KMS, ACM, WAF, Shield, CloudTrail 
+
+Databases 
+• RDS (MySQL, MSSQL, Aurora) 
+• Multi-AZ & Read Replicas 
+• DynamoDB & Migration service 
+
+AWS Lambda 
+• Boto3 automation & Environment configuration 
+• Layers & Limitations 
+
+Route 53 
+• DNS Records & Routing policies (Failover, Latency, Geo)
+        </pre>
+    </div>
+
+    <div class="block-devops">
+        <h2 style="color:#a78bfa;">Section 5: DevOps Tools & CI/CD</h2>
+        <pre>
+DevOps Overview 
+• DevOps pipeline & ecosystem 
+
+Shell Scripting 
+• Variables, Operators, Conditions, Loops, Functions 
+
+Web Servers 
+• Apache & Tomcat configuration and deployment 
+
+CI/CD Tools
+• Git: Branching, Merging, Rebase, Remote Repos
+• Maven: POM, Lifecycle, Dependencies
+• SonarQube: Code scan & Maven integration
+• Jenkins: Master-slave, Plugins, Jobs
+• Azure CICD & Git Lab CICD
+        </pre>
+    </div>
+
+    <div class="block-devops">
+        <h2 style="color:#a78bfa;">Section 6: Containers & Orchestration</h2>
+        <pre>
+Docker 
+• Images, Containers, Dockerfile 
+• Docker Compose & Docker Swarm 
+
+Kubernetes 
+• Architecture, Deployments, Services 
+• Helm Charts & RBAC 
+• AKS / EKS integration 
+• EFK Stack (Logs)
+• Argo CD (GitOps & Continuous Delivery) 
+• Grafana & Prometheus (Monitoring)
+        </pre>
+    </div>
+
+    <div class="block-automation">
+        <h2 style="color:#4ade80;">Section 7: Infrastructure as Code & Final</h2>
+        <pre>
+Ansible 
+• Inventory, Playbooks, Roles, Modules 
+
+Terraform 
+• Providers, Resources, State, Modules 
+• AWS labs & Best practices 
+
+Python Boto3 
+• AWS automation with Python 
+
+Final Project 
+• End-to-end DevOps project 
+• Resume preparation & Mock interviews 
+        </pre>
+    </div>
     """
+    return get_layout("Complete Course Syllabus", content)
 
-# ❌ No app.run() — gunicorn will handle it
+if __name__ == "__main__":
+    app.run(debug=True)
