@@ -171,21 +171,23 @@ def get_layout(title, content):
 
 @app.route("/")
 def home():
-    content = f"""
+    content = """
     <div class="card">
-        <h1 style="color:#ffcc00;">Veera Naresh IT</h1>
-        <h2 style="color:#00e5ff;">Multi Cloud – DevOps Course</h2>
-        <p>
-            Complete industry-level <b>AWS, Azure & GCP</b> DevOps syllabus 
-            with real-time projects, automation, CI/CD, Kubernetes, and IaC.
-        </p>
-        <p>
-            Environment Status: <span style="color:#4ade80;">[ ONLINE ]</span><br>
-            Running on: <b>{os.getenv("CLOUD_PROVIDER", "Multi-Cloud Environment")}</b>
-        </p>
+        <h1 style="color:#ffcc00;">Multi-Cloud DevOps Training</h1>
+        <h2>By Veera Sir – Naresh IT</h2>
+        <p>Welcome to the industry-oriented Multi-Cloud DevOps program...</p>
+    </div>
+
+    <div class="card">
+        <h2 style="color:#00e5ff;">Why Multi-Cloud DevOps?</h2>
+        <ul>
+            <li>Multiple cloud providers</li>
+            <li>High availability</li>
+            <li>Vendor independence</li>
+        </ul>
     </div>
     """
-    return get_layout("Veera Naresh IT – Home", content)
+    return get_layout("Home", content)
 
 @app.route("/syllabus")
 def syllabus():
