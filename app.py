@@ -75,16 +75,97 @@ def get_layout(title, content):
         {STYLE}
     </head>
     <body>
+
         <div class="navbar">
             <a href="/">Home</a>
             <a href="/syllabus">Syllabus</a>
+            <a href="/health">Health</a>
         </div>
+
         <div class="container">
+
+            <div class="card">
+                <h1 style="color:#ffcc00;">Multi-Cloud DevOps Training</h1>
+                <h2>By Veera Sir – Naresh IT</h2>
+
+                <p>
+                    Welcome to the <b>industry-oriented Multi-Cloud DevOps program</b> designed by
+                    <b>Veera Sir</b> at <b>Naresh IT</b>.  
+                    This course is structured to help learners become
+                    <b>job-ready DevOps Engineers</b> with real-time exposure to
+                    <b>AWS, Azure, and GCP</b>.
+                </p>
+
+                <p>
+                    The training focuses on <b>hands-on implementation</b>,
+                    <b>real production scenarios</b>, and
+                    <b>end-to-end CI/CD pipelines</b>
+                    used by modern enterprises.
+                </p>
+            </div>
+
+            <div class="card">
+                <h2 style="color:#00e5ff;">Why Multi-Cloud DevOps?</h2>
+                <ul>
+                    <li>Most enterprises use <b>multiple cloud providers</b></li>
+                    <li>High availability & vendor independence</li>
+                    <li>Better cost optimization strategies</li>
+                    <li>Enterprise-grade disaster recovery</li>
+                    <li>Cloud-agnostic DevOps skills = <b>higher salaries</b></li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h2 style="color:#00ff99;">What You Will Learn</h2>
+                <ul>
+                    <li>AWS, Azure & GCP core cloud services</li>
+                    <li>Linux & Shell scripting from scratch</li>
+                    <li>CI/CD with Jenkins, Azure DevOps & GitLab</li>
+                    <li>Docker & Kubernetes (EKS, AKS)</li>
+                    <li>Infrastructure as Code using Terraform & Ansible</li>
+                    <li>Monitoring with Grafana & Prometheus</li>
+                    <li>GitOps with Argo CD</li>
+                    <li>Automation using Python & Boto3</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h2 style="color:#ffaa00;">Real-Time DevOps Project</h2>
+                <p>
+                    Learners will work on a <b>real-time enterprise DevOps project</b>
+                    covering:
+                </p>
+                <ul>
+                    <li>Multi-cloud infrastructure setup</li>
+                    <li>CI/CD pipeline design</li>
+                    <li>Dockerized applications</li>
+                    <li>Kubernetes deployment</li>
+                    <li>Monitoring & alerting</li>
+                    <li>Production-grade security practices</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h2 style="color:#ff6699;">Why Naresh IT & Veera Sir?</h2>
+                <ul>
+                    <li>20+ years of training excellence</li>
+                    <li>Trainer with <b>real production experience</b></li>
+                    <li>Interview-focused training</li>
+                    <li>Resume & mock interview support</li>
+                    <li>Trusted by thousands of DevOps professionals</li>
+                </ul>
+            </div>
+
+            <!-- Dynamic page content -->
             {content}
+
         </div>
+
         <div class="footer">
-            © 2026 Veera Naresh IT | Multi Cloud DevOps Specialist
+            © 2026 Veera Sir – Naresh IT <br>
+            Multi-Cloud DevOps | AWS | Azure | GCP | Kubernetes | Terraform
         </div>
+
     </body>
     </html>
     """
