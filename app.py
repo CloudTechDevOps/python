@@ -67,70 +67,7 @@ STYLE = """
 </style>
 """
 
-def get_layout(title, content, show_home=False):
-    home_block = ""
-
-    if show_home:
-        home_block = """
-        <div class="card">
-            <h1 style="color:#ffcc00;">Multi-Cloud DevOps Training</h1>
-            <h2>By Veera Sir – Naresh IT</h2>
-
-            <p>
-                Welcome to the <b>industry-oriented Multi-Cloud DevOps program</b> designed by
-                <b>Veera Sir</b> at <b>Naresh IT</b>.
-            </p>
-
-            <p>
-                Hands-on implementation, real production scenarios,
-                and end-to-end CI/CD pipelines.
-            </p>
-        </div>
-
-        <div class="card">
-            <h2 style="color:#00e5ff;">Why Multi-Cloud DevOps?</h2>
-            <ul>
-                <li>Multiple cloud providers</li>
-                <li>High availability & vendor independence</li>
-                <li>Better cost optimization</li>
-                <li>Enterprise disaster recovery</li>
-                <li>Higher salaries</li>
-            </ul>
-        </div>
-
-        <div class="card">
-            <h2 style="color:#00ff99;">What You Will Learn</h2>
-            <ul>
-                <li>AWS, Azure & GCP</li>
-                <li>Linux & Shell scripting</li>
-                <li>CI/CD pipelines</li>
-                <li>Docker & Kubernetes</li>
-                <li>Terraform & Ansible</li>
-                <li>GitOps & Automation</li>
-            </ul>
-        </div>
-
-        <div class="card">
-            <h2 style="color:#ffaa00;">Real-Time DevOps Project</h2>
-            <ul>
-                <li>Multi-cloud infra</li>
-                <li>CI/CD pipelines</li>
-                <li>Kubernetes deployments</li>
-                <li>Monitoring & security</li>
-            </ul>
-        </div>
-
-        <div class="card">
-            <h2 style="color:#ff6699;">Why Naresh IT & Veera Sir?</h2>
-            <ul>
-                <li>20+ years excellence</li>
-                <li>Real-time trainer</li>
-                <li>Interview focused</li>
-                <li>Mock interviews</li>
-            </ul>
-        </div>
-        """
-
+def get_layout(title, content):
     return f"""
     <html>
     <head>
@@ -145,7 +82,6 @@ def get_layout(title, content, show_home=False):
         </div>
 
         <div class="container">
-            {home_block}
             {content}
         </div>
 
@@ -158,26 +94,71 @@ def get_layout(title, content, show_home=False):
     </html>
     """
 
-
 @app.route("/")
 def home():
-    content = """
+    home_content = """
     <div class="card">
         <h1 style="color:#ffcc00;">Multi-Cloud DevOps Training</h1>
         <h2>By Veera Sir – Naresh IT</h2>
-        <p>Welcome to the industry-oriented Multi-Cloud DevOps program...</p>
+
+        <p>
+            Welcome to the <b>industry-oriented Multi-Cloud DevOps program</b> designed by
+            <b>Veera Sir</b> at <b>Naresh IT</b>.
+        </p>
+
+        <p>
+            Hands-on implementation, real production scenarios,
+            and end-to-end CI/CD pipelines.
+        </p>
     </div>
 
     <div class="card">
         <h2 style="color:#00e5ff;">Why Multi-Cloud DevOps?</h2>
         <ul>
             <li>Multiple cloud providers</li>
-            <li>High availability</li>
-            <li>Vendor independence</li>
+            <li>High availability & vendor independence</li>
+            <li>Better cost optimization</li>
+            <li>Enterprise disaster recovery</li>
+            <li>Higher salaries</li>
+        </ul>
+    </div>
+
+    <div class="card">
+        <h2 style="color:#00ff99;">What You Will Learn</h2>
+        <ul>
+            <li>AWS, Azure & GCP</li>
+            <li>Linux & Shell scripting</li>
+            <li>CI/CD pipelines</li>
+            <li>Docker & Kubernetes</li>
+            <li>Terraform & Ansible</li>
+            <li>GitOps & Automation</li>
+        </ul>
+    </div>
+
+    <div class="card">
+        <h2 style="color:#ffaa00;">Real-Time DevOps Project</h2>
+        <ul>
+            <li>Multi-cloud infra</li>
+            <li>CI/CD pipelines</li>
+            <li>Kubernetes deployments</li>
+            <li>Monitoring & security</li>
+        </ul>
+    </div>
+
+    <div class="card">
+        <h2 style="color:#ff6699;">Why Naresh IT & Veera Sir?</h2>
+        <ul>
+            <li>20+ years excellence</li>
+            <li>Real-time trainer</li>
+            <li>Interview focused</li>
+            <li>Mock interviews</li>
         </ul>
     </div>
     """
-    return get_layout("Home", content)
+
+    # Pass the home_content to get_layout
+    return get_layout("Home", home_content)
+
 
 @app.route("/syllabus")
 def syllabus():
