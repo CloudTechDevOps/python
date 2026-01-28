@@ -170,15 +170,6 @@ def home():
         </ul>
     </div>
 
-    <div class="card">
-        <h2 style="color:#ffaa00;">Real-Time DevOps Project</h2>
-        <ul>
-            <li>Multi-cloud infra</li>
-            <li>CI/CD pipelines</li>
-            <li>Kubernetes deployments</li>
-            <li>Monitoring & security</li>
-        </ul>
-    </div>
 
     <div class="card">
         <h2 style="color:#ff6699;">Why Naresh IT & Veera Sir?</h2>
