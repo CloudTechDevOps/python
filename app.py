@@ -78,8 +78,7 @@ def get_layout(title, content):
 
         <div class="navbar">
             <a href="/">Home</a>
-            <a href="/syllabus">Syllabus</a>
-            <a href="/health">Health</a>
+            <a href="/syllabus">syllabus</a>
         </div>
 
         <div class="container">
